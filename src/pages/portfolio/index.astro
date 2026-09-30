@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects, filters, portfolioIntro, portfolioStats } from '../../data/projects';
+
+const title = 'Progetti | Studio Tecnico A’RS, geometri a Mestre-Venezia';
+const description = 'Progetti dello Studio Tecnico A’RS di Mestre-Venezia: render di progetto e opere realizzate, dalla progettazione alla direzione lavori.';
+---
+<BaseLayout title={title} description={description}>
+  <section class="pt-[calc(var(--header-h)+3rem)] pb-10">
+    <div class="container-site">
+      <nav aria-label="Percorso di navigazione" class="text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-grey">
+          <li class="flex items-center gap-2"><a href="/" class="link-underline hover:text-accent transition-colors">Home</a></li>
+          <li class="flex items-center gap-2"><span aria-hidden="true">/</span><span aria-current="page" class="text-ink">Progetti</span></li>
+        </ol>
+      </nav>
+      <h1 class="mt-5 font-heading text-h1 text-ink max-w-4xl">Progetti</h1>
+      <div class="mt-6 grid lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-8 prose-dom reveal-in">
+          {portfolioIntro.map((para) => (<p>{para}</p>))}
+        </div>
+        <dl class="lg:col-span-4 grid grid-cols-2 gap-6 text-sm reveal-in self-start">
+          <div>
+            <dt class="text-grey uppercase tracking-[.14em] text-xs">Progetti pubblicati</dt>
+            <dd class="mt-1 font-heading text-h3 text-ink">{portfolioStats[0]}</dd>
+          </div>
+          <div>
+            <dt class="text-grey uppercase tracking-[.14em] text-xs">Anni</dt>
+            <dd class="mt-1 font-heading text-h3 text-ink">{portfolioStats[1]}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-site pb-16 md:pb-24">
+    <div>
+      <div class="flex flex-wrap gap-2" role="group" aria-label="Filtra i progetti per categoria">
+        {filters.map((f) => (
+          f.key === '__all' ? (
+            <button type="button" data-filter="__all" aria-pressed="true" class="filter-btn text-xs uppercase tracking-[.12em] px-4 py-2 border border-ink bg-ink text-white transition-colors">{f.label}</button>
+          ) : (
+            <button type="button" data-filter={f.key} aria-pressed="false" class="filter-btn text-xs uppercase tracking-[.12em] px-4 py-2 border border-ink/15 text-ink hover:border-ink transition-colors">{f.label}</button>
+          )
+        ))}
+      </div>
+    </div>
+
+    <div id="project-grid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-5 gap-y-7 md:gap-y-8">
+      {projects.map((p) => (<ProjectCard project={p} />))}
+    </div>
+    <p id="no-results" hidden class="mt-10 text-grey">Nessun progetto in questa categoria.</p>
+  </section>
+</BaseLayout>
+
+<script>
+  const o=document.querySelectorAll(".filter-btn"),n=document.querySelectorAll("#project-grid [data-tags]"),c=document.getElementById("no-results"),d=(s:Element)=>{o.forEach(t=>{const e=t===s;t.setAttribute("aria-pressed",String(e)),t.classList.toggle("bg-ink",e),t.classList.toggle("text-white",e),t.classList.toggle("border-ink",e),t.classList.toggle("border-ink/15",!e),t.classList.toggle("text-ink",!e)})};o.forEach(s=>{s.addEventListener("click",()=>{const t=(s as HTMLElement).dataset.filter;d(s);let e=0;n.forEach(l=>{const r=t==="__all"||((l as HTMLElement).dataset.tags??"").split(" ").includes(t!);(l as HTMLElement).hidden=!r,r&&e++}),c&&(c.hidden=e>0);const a=new URL(location.href);t==="__all"?a.searchParams.delete("categoria"):a.searchParams.set("categoria",t!),history.replaceState(null,"",a)})});const i=new URL(location.href).searchParams.get("categoria");i&&(document.querySelector(`.filter-btn[data-filter="${i}"]`) as HTMLElement)?.click();
+</script>

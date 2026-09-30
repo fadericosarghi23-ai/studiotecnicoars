@@ -1,0 +1,22 @@
+---
+import type { Project } from '../data/projects';
+interface Props { project: Project; }
+const { project: p } = Astro.props;
+---
+<article class="group reveal-in" data-tags={p.tags.join(' ')} data-project={p.slug}>
+  <a href={`/portfolio/${p.slug}/`} class="block focus-visible:outline-offset-4">
+    <div class="relative overflow-hidden bg-grey-light aspect-[4/3]">
+      <img src={p.previewSrc} width={p.previewW} height={p.previewH} alt={p.previewAlt} loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+      <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/15 transition-colors duration-500" aria-hidden="true"></div>
+    </div>
+    <div class="pt-3">
+      <h3 class="font-heading text-h4 text-ink leading-tight group-hover:text-accent transition-colors">{p.title}</h3>
+      <p class="mt-0.5 text-s text-grey">{p.meta}</p>
+      <ul class="mt-2 flex flex-wrap gap-1.5" aria-label="Categorie del progetto">
+        {p.displayTags.map((t) => (
+          <li class="text-[.625rem] uppercase tracking-[.12em] text-grey border border-ink/10 px-2 py-0.5">{t}</li>
+        ))}
+      </ul>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,19 @@
+---
+// Banner cookie — solo consenso locale (localStorage), nessun tracker collegato.
+---
+<div id="cookie-banner" hidden role="dialog" aria-labelledby="cookie-title" class="fixed bottom-4 inset-x-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[1000] bg-white text-ink border border-ink/10 shadow-lg p-6">
+  <p id="cookie-title" class="font-heading text-h5 mb-2">Rispettiamo la tua privacy</p>
+  <p class="text-s mb-4">
+    Usiamo solo cookie tecnici essenziali. Con il tuo consenso possiamo attivare cookie analitici
+    anonimi per migliorare il sito.
+  </p>
+  <div class="flex flex-wrap gap-2">
+    <button data-cookie="accept" class="btn-primary !px-4 !py-2">Accetta</button>
+    <button data-cookie="reject" class="btn-outline !px-4 !py-2">Rifiuta</button>
+    <a href="/cookie-policy/" class="px-4 py-2 text-xs uppercase tracking-[.14em] link-underline self-center">Preferenze</a>
+  </div>
+</div>
+
+<script>
+  const o="ars-cookie-consent",e=document.getElementById("cookie-banner");try{e&&!localStorage.getItem(o)&&e.removeAttribute("hidden")}catch{}e?.querySelectorAll("[data-cookie]").forEach(t=>{t.addEventListener("click",()=>{try{localStorage.setItem(o,(t as HTMLElement).dataset.cookie??"reject")}catch{}e.setAttribute("hidden","")})});
+</script>

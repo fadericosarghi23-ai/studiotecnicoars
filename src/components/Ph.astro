@@ -1,0 +1,29 @@
+---
+// Placeholder immagine — stessa dimensione dell'originale (width/height/aspect
+// invariati) così layout e animazioni non si spostano. Al riempimento cliente
+// si sostituisce con la foto reale mantenendo width/height.
+interface Props {
+  w: number;
+  h: number;
+  label?: string;
+  alt?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  decoding?: 'sync' | 'async' | 'auto';
+}
+const {
+  w, h,
+  label = 'IMMAGINE',
+  alt = 'DA COMPILARE: descrizione immagine',
+  class: cls = '',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  decoding = 'async',
+} = Astro.props;
+
+const fs = Math.max(12, Math.round(Math.min(w, h) / 9));
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice"><rect width="100%" height="100%" fill="#dcd6cf"/><rect x="1.5" y="1.5" width="${w - 3}" height="${h - 3}" fill="none" stroke="#b0a79d" stroke-width="3"/><g fill="#6f665d" font-family="ui-monospace,monospace" text-anchor="middle"><text x="50%" y="47%" font-size="${fs}" font-weight="700">${label}</text><text x="50%" y="47%" dy="${fs * 1.4}" font-size="${Math.round(fs * 0.72)}">${w}×${h} · DA SOSTITUIRE</text></g></svg>`;
+const src = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+---
+<img src={src} width={w} height={h} alt={alt} class={cls} loading={loading} fetchpriority={fetchpriority} decoding={decoding} />

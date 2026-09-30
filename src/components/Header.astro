@@ -1,0 +1,62 @@
+---
+import { nav, site } from '../data/site';
+interface Props { transparent?: boolean }
+const { transparent = false } = Astro.props;
+---
+<header
+  id="site-header"
+  data-transparent={transparent ? 'true' : 'false'}
+  class:list={[
+    'fixed inset-x-0 top-0 z-[999] h-header text-ink transition-[background-color,box-shadow] duration-300',
+    transparent ? 'is-transparent' : 'is-solid',
+  ]}
+>
+  <div class="container-site h-full flex items-center justify-between gap-6">
+    <a href="/" class="flex items-center shrink-0" aria-label={`${site.name} — home`}>
+      <img src="/images/brand/logo-header.svg" width="220" height="69" alt={site.name} class="w-[144px] md:w-[176px] h-auto" fetchpriority="high" />
+    </a>
+
+    <nav aria-label="Menu principale" class="hidden lg:flex items-center gap-5 xl:gap-7 text-xs uppercase tracking-[.14em] font-semibold whitespace-nowrap">
+      {nav.map((item) => (
+        <a href={item.href} class="link-underline">{item.label}</a>
+      ))}
+      <a href="/contatti/#richiedi" class="btn-primary !px-5 !py-2.5 hidden xl:inline-flex">Richiedi un preventivo</a>
+    </nav>
+
+    <button id="menu-toggle" type="button" class="lg:hidden inline-flex flex-col justify-center gap-1.5 w-10 h-10 items-center" aria-label="Apri il menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="block h-px w-6 bg-current transition-transform"></span>
+      <span class="block h-px w-6 bg-current transition-opacity"></span>
+      <span class="block h-px w-6 bg-current transition-transform"></span>
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" hidden class="fixed inset-0 z-[998] bg-white text-ink pt-header overflow-y-auto">
+  <div class="container-site py-l">
+    <nav aria-label="Menu principale" class="flex flex-col gap-5 text-h3 font-heading">
+      <a href="/" class="link-underline">Home</a>
+      {nav.map((item) => (
+        <a href={item.href} class="link-underline">{item.label}</a>
+      ))}
+    </nav>
+    <a href="/contatti/#richiedi" class="btn-primary mt-8">Richiedi un preventivo</a>
+    <div class="mt-xl pt-l text-s">
+      <p>{site.addresses[0].text}</p>
+      <p class="mt-2"><a href={`mailto:${site.email}`} class="link-underline">{site.email}</a></p>
+      <p class="mt-1"><a href={`tel:${site.phones[0].href}`} class="link-underline">{site.phones[0].label}</a></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  #site-header.is-transparent { background: linear-gradient(to bottom, #ffffff38, #ffffff12 60%, #fff0); }
+  #site-header.is-transparent img { filter: drop-shadow(0 1px 14px rgba(255, 255, 255, .45)); }
+  #site-header.is-transparent nav a,
+  #site-header.is-transparent #menu-toggle { text-shadow: 0 0 12px rgba(255, 255, 255, .55); }
+  #site-header.is-transparent nav a.btn-primary { text-shadow: none; }
+  #site-header.is-solid { background: #fff; box-shadow: 0 1px 20px #00000014; }
+</style>
+
+<script>
+  const t=document.getElementById("site-header"),e=document.getElementById("menu-toggle"),s=document.getElementById("mobile-menu");if(t){const n=t.dataset.transparent==="true",i=()=>{const d=window.scrollY>24;t.classList.toggle("is-solid",d),n&&t.classList.toggle("is-transparent",!d)};i(),window.addEventListener("scroll",i,{passive:!0})}e&&s&&e.addEventListener("click",()=>{s.hasAttribute("hidden")?(s.removeAttribute("hidden"),e.setAttribute("aria-expanded","true"),e.setAttribute("aria-label","Chiudi il menu"),t?.classList.add("is-solid"),t?.classList.remove("is-transparent"),document.body.style.overflow="hidden"):(s.setAttribute("hidden",""),e.setAttribute("aria-expanded","false"),e.setAttribute("aria-label","Apri il menu"),document.body.style.overflow="",window.dispatchEvent(new Event("scroll")))});
+</script>

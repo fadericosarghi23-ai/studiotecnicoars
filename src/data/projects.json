@@ -1,0 +1,94 @@
+{
+  "projects": [
+    {
+      "slug": "villa-con-piscina",
+      "tags": ["render", "nuove-costruzioni"],
+      "previewSrc": "/images/hero/render-villa-piscina-giardino.webp",
+      "previewW": 1016,
+      "previewH": 515,
+      "previewAlt": "Render di una villa con piscina e giardino",
+      "title": "Villa con piscina",
+      "meta": "[[DA COMPILARE: luogo]] · [[DA COMPILARE: anno]]",
+      "displayTags": ["Render di progetto", "Nuove costruzioni"],
+      "subtitle": "[[DA COMPILARE: sottotitolo progetto, 1 frase — da chiedere al cliente]]",
+      "description": "Villa con piscina: render di progetto dello Studio Tecnico A’RS, geometri a Mestre-Venezia.",
+      "hero": { "src": "/images/hero/render-villa-piscina-giardino.webp", "w": 1016, "h": 515, "alt": "Render di una villa con piscina e giardino" },
+      "location": "[[DA COMPILARE: luogo]]",
+      "year": "[[DA COMPILARE: anno]]",
+      "categories": "Render di progetto · Nuove costruzioni",
+      "intro": [
+        "[[DA COMPILARE: descrizione del progetto, 2-3 frasi — da chiedere al cliente]]"
+      ],
+      "gallery": [
+        { "src": "/images/hero/render-villa-piscina-giardino.webp", "w": 1016, "h": 515, "alt": "Render della villa con piscina e giardino", "aspect": "4/3" },
+        { "src": "/images/hero/render-villa-piscina.webp", "w": 1007, "h": 508, "alt": "Render della piscina e del fronte della residenza", "aspect": "4/3" }
+      ],
+      "before": null,
+      "cta": null,
+      "related": ["villa-unifamiliare", "interno-residenziale"]
+    },
+    {
+      "slug": "interno-residenziale",
+      "tags": ["render", "interni"],
+      "previewSrc": "/images/hero/render-interno-soggiorno.webp",
+      "previewW": 1600,
+      "previewH": 800,
+      "previewAlt": "Render di un soggiorno con camino centrale",
+      "title": "Interno residenziale",
+      "meta": "[[DA COMPILARE: luogo]] · [[DA COMPILARE: anno]]",
+      "displayTags": ["Render di progetto", "Interni"],
+      "subtitle": "[[DA COMPILARE: sottotitolo progetto, 1 frase — da chiedere al cliente]]",
+      "description": "Interno residenziale: render di progetto dello Studio Tecnico A’RS, geometri a Mestre-Venezia.",
+      "hero": { "src": "/images/hero/render-interno-soggiorno.webp", "w": 1600, "h": 800, "alt": "Render di un soggiorno con camino centrale" },
+      "location": "[[DA COMPILARE: luogo]]",
+      "year": "[[DA COMPILARE: anno]]",
+      "categories": "Render di progetto · Interni",
+      "intro": [
+        "[[DA COMPILARE: descrizione del progetto, 2-3 frasi — da chiedere al cliente]]"
+      ],
+      "gallery": [
+        { "src": "/images/hero/render-interno-soggiorno.webp", "w": 1600, "h": 800, "alt": "Render del soggiorno con camino centrale e zona pranzo", "aspect": "4/3" }
+      ],
+      "before": null,
+      "cta": null,
+      "related": ["villa-con-piscina", "villa-unifamiliare"]
+    },
+    {
+      "slug": "villa-unifamiliare",
+      "tags": ["realizzazioni", "nuove-costruzioni"],
+      "previewSrc": "/images/studio/mission-villa-realizzata.webp",
+      "previewW": 1144,
+      "previewH": 780,
+      "previewAlt": "Villa unifamiliare realizzata",
+      "title": "Villa unifamiliare",
+      "meta": "[[DA COMPILARE: luogo]] · [[DA COMPILARE: anno]]",
+      "displayTags": ["Realizzazioni", "Nuove costruzioni"],
+      "subtitle": "[[DA COMPILARE: sottotitolo progetto, 1 frase — da chiedere al cliente]]",
+      "description": "Villa unifamiliare realizzata su progetto dello Studio Tecnico A’RS, geometri a Mestre-Venezia.",
+      "hero": { "src": "/images/studio/mission-villa-realizzata.webp", "w": 1144, "h": 780, "alt": "Villa unifamiliare realizzata" },
+      "location": "[[DA COMPILARE: luogo]]",
+      "year": "[[DA COMPILARE: anno]]",
+      "categories": "Realizzazioni · Nuove costruzioni",
+      "intro": [
+        "[[DA COMPILARE: descrizione del progetto, 2-3 frasi — da chiedere al cliente]]"
+      ],
+      "gallery": [
+        { "src": "/images/studio/mission-villa-realizzata.webp", "w": 1144, "h": 780, "alt": "Villa unifamiliare con portico a fine lavori", "aspect": "4/3" }
+      ],
+      "before": null,
+      "cta": null,
+      "related": ["villa-con-piscina", "interno-residenziale"]
+    }
+  ],
+  "filters": [
+    { "key": "__all", "label": "Tutti" },
+    { "key": "nuove-costruzioni", "label": "Nuove costruzioni" },
+    { "key": "interni", "label": "Interni" },
+    { "key": "render", "label": "Render di progetto" },
+    { "key": "realizzazioni", "label": "Realizzazioni" }
+  ],
+  "pageIntro": [
+    "Una selezione di progetti dello Studio Tecnico A’RS: render di progetto e opere realizzate, dalla idea sino all’opera finita."
+  ],
+  "stats": ["3", "2003 – oggi"]
+}

@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site, serviceLinks } from '../../data/site';
+
+const title = 'Contatti | Studio Tecnico A’RS, geometri a Mestre-Venezia';
+const description = 'Studio Tecnico A’RS, Galleria Teatro Vecchio 15, 30172 Mestre Venezia (VE). Tel. 041 5347795, info@studiotecnicoars.it. Richiedi un preventivo.';
+
+const mapQuery = encodeURIComponent('Galleria Teatro Vecchio 15, 30172 Mestre Venezia VE');
+---
+<BaseLayout title={title} description={description}>
+  <section class="pt-[calc(var(--header-h)+2.5rem)] pb-8">
+    <div class="container-site">
+      <nav aria-label="Percorso di navigazione" class="text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-grey">
+          <li class="flex items-center gap-2"><a href="/" class="link-underline hover:text-accent transition-colors">Home</a></li>
+          <li class="flex items-center gap-2"><span aria-hidden="true">/</span><span aria-current="page" class="text-ink">Contatti</span></li>
+        </ol>
+      </nav>
+      <h1 class="mt-4 font-heading text-h1 text-ink max-w-4xl">Contatti</h1>
+      <div class="mt-6 grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+        <p class="lg:col-span-6 text-body reveal-in">È sufficiente compilare il form sottostante e specificare la richiesta per ottenere in breve tempo un preventivo di spesa per reperire la documentazione necessaria in qualsiasi ufficio nel territorio Italiano.</p>
+        <div class="lg:col-span-3 text-body text-grey reveal-in">
+          <p>Lo Studio Tecnico A’RS ha sede nel cuore della città di Mestre-Venezia, nel cui territorio svolge prevalentemente la propria attività.</p>
+          <p class="mt-3 text-ink">Galleria Teatro Vecchio 15, 30172 Mestre Venezia (VE)</p>
+        </div>
+        <div class="lg:col-span-3 reveal-in bg-grey-light p-6">
+          <p class="text-xs uppercase tracking-[.16em] text-grey">Scrivici subito</p>
+          <a href={`mailto:${site.email}`} class="mt-2 block font-heading text-h4 text-ink hover:text-accent transition-colors break-words">{site.email}</a>
+          <a href={`tel:${site.phones[0].href}`} class="mt-2 block text-s text-body hover:text-accent transition-colors"><span class="text-grey text-xs uppercase tracking-wider block">{site.phones[0].role}</span> {site.phones[0].label}</a>
+          {site.whatsapp
+            ? <a href={`https://wa.me/${site.whatsapp}`} class="btn-primary mt-5 w-full !px-4">WhatsApp</a>
+            : <a href={`tel:${site.phones[0].href}`} class="btn-primary mt-5 w-full !px-4">Chiama lo studio</a>}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="richiedi" class="scroll-mt-28 container-site pb-16 md:pb-24">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <!-- FORM -->
+      <div class="lg:col-span-7 reveal-in">
+        <h2 class="font-heading text-h3 text-ink mb-6">Invia un messaggio</h2>
+        {/* Netlify Forms: rilevato al deploy (attivare "Form detection" nel pannello Netlify → Forms).
+            Le richieste arrivano in Netlify → Forms; impostare lì la notifica email verso info@studiotecnicoars.it. */}
+        <form name="contatti" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="grid sm:grid-cols-2 gap-5">
+          <input type="hidden" name="form-name" value="contatti" />
+          <p class="hidden"><label>Non compilare: <input name="bot-field" /></label></p>
+          <div class="flex flex-col gap-2">
+            <label for="nome" class="text-xs uppercase tracking-[.14em] text-grey">Nome *</label>
+            <input id="nome" name="nome" type="text" required autocomplete="name" class="border border-ink/20 px-4 py-3 focus:border-accent outline-none transition-colors" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="email" class="text-xs uppercase tracking-[.14em] text-grey">Email *</label>
+            <input id="email" name="email" type="email" required autocomplete="email" class="border border-ink/20 px-4 py-3 focus:border-accent outline-none transition-colors" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="telefono" class="text-xs uppercase tracking-[.14em] text-grey">Telefono</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" class="border border-ink/20 px-4 py-3 focus:border-accent outline-none transition-colors" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="luogo" class="text-xs uppercase tracking-[.14em] text-grey">Dove si trova l’immobile?</label>
+            <input id="luogo" name="luogo" type="text" class="border border-ink/20 px-4 py-3 focus:border-accent outline-none transition-colors" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="quando" class="text-xs uppercase tracking-[.14em] text-grey">Quando</label>
+            <select id="quando" name="quando" class="border border-ink/20 px-4 py-3 bg-white focus:border-accent outline-none transition-colors">
+              <option value="">Seleziona…</option>
+              <option value="Subito (entro i prossimi 2 mesi)">Subito (entro i prossimi 2 mesi)</option>
+              <option value="Tra 3 e 6 mesi">Tra 3 e 6 mesi</option>
+              <option value="Tra 6 e 12 mesi">Tra 6 e 12 mesi</option>
+              <option value="Non ancora definito">Non ancora definito</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="tipologia" class="text-xs uppercase tracking-[.14em] text-grey">Servizio richiesto</label>
+            <select id="tipologia" name="tipologia" class="border border-ink/20 px-4 py-3 bg-white focus:border-accent outline-none transition-colors">
+              <option value="">Seleziona…</option>
+              {serviceLinks.map((s) => (<option value={s.label}>{s.label}</option>))}
+            </select>
+          </div>
+          <div class="flex flex-col gap-2 sm:col-span-2">
+            <label for="messaggio" class="text-xs uppercase tracking-[.14em] text-grey">Messaggio</label>
+            <textarea id="messaggio" name="messaggio" rows="5" class="border border-ink/20 px-4 py-3 focus:border-accent outline-none transition-colors"></textarea>
+          </div>
+          <div class="sm:col-span-2 flex items-start gap-3">
+            <input id="privacy" name="privacy" type="checkbox" required class="mt-1.5" />
+            <label for="privacy" class="text-s text-grey">Ho letto e accetto la <a href="/privacy-policy/" class="link-underline text-ink">privacy policy</a> *</label>
+          </div>
+          <div class="sm:col-span-2">
+            <button type="submit" class="btn-primary">Invia un messaggio</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- DATI -->
+      <div class="lg:col-span-5 lg:sticky lg:top-28 self-start reveal-in">
+        <h2 class="font-heading text-h3 text-ink mb-6">Dove siamo</h2>
+        <dl class="border-t border-ink/10">
+          <div class="py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">Sede</dt><dd class="mt-1"><a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener" class="link-underline text-ink">{site.addresses[0].text}</a></dd></div>
+          <div class="py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">Orari di apertura</dt><dd class="mt-1 text-ink">{site.hours} <span class="block text-s text-grey">{site.hoursNote}</span></dd></div>
+          <div class="py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">{site.phones[0].role}</dt><dd class="mt-1"><a href={`tel:${site.phones[0].href}`} class="link-underline text-ink">{site.phones[0].label}</a></dd></div>
+          <div class="py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">Email</dt><dd class="mt-1"><a href={`mailto:${site.email}`} class="link-underline text-ink">{site.email}</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-site py-16 md:py-20">
+    <h2 class="font-heading text-h3 text-ink mb-6 reveal-in">La mappa</h2>
+    <div class="aspect-[16/9] md:aspect-[21/9] bg-grey-light reveal-in border border-ink/10 overflow-hidden">
+      <iframe
+        title="Mappa: Studio Tecnico A’RS, Galleria Teatro Vecchio 15, Mestre Venezia"
+        src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+        class="w-full h-full border-0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
+</BaseLayout>

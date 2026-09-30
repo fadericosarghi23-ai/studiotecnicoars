@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+import ProjectCard from '../components/ProjectCard.astro';
+import Reviews from '../components/Reviews.astro';
+import { projects } from '../data/projects';
+
+const title = 'Studio Tecnico A’RS | Geometri a Mestre-Venezia';
+const description = 'Studio Tecnico A’RS, geometri a Mestre-Venezia: progettazione e direzione lavori, stime immobiliari, pratiche catastali, rilievi e consulenze tecniche.';
+
+// Slide dell'hero: render e realizzazioni dal sito dello studio.
+const heroSlides = [
+  { src: '/images/hero/render-interno-soggiorno.webp', w: 1600, h: 800, alt: 'Render di un soggiorno progettato dallo Studio Tecnico A’RS' },
+  { src: '/images/hero/render-villa-piscina-giardino.webp', w: 1016, h: 515, alt: 'Render di una villa con piscina e giardino' },
+  { src: '/images/studio/mission-villa-realizzata.webp', w: 1144, h: 780, alt: 'Villa unifamiliare realizzata' },
+  { src: '/images/hero/render-villa-piscina.webp', w: 1007, h: 508, alt: 'Render di una residenza con piscina' },
+];
+
+// Servizi in evidenza (4 card icona). Testi: prima frase dei testi del cliente.
+const homeServices = [
+  { href: '/servizi/#progettazione-direzione-lavori', icon: '/images/icone/progettazione.svg', title: 'Progettazione e direzione lavori', text: 'Da sempre i Geometri Riccardo Bonifati e Christian Tosato e lo Studio Tecnico A’RS svolgono attività di progettazione di interventi edilizi residenziali, commerciali, industriali, rurali, di nuova costruzione o in ristrutturazione, dalle fasi di analisi di fattibilità preliminare sino al completamento delle opere.' },
+  { href: '/servizi/#stime-immobiliari', icon: '/images/icone/stime.svg', title: 'Stime immobiliari', text: 'Grazie alla costante formazione professionale ed agli studi decennali sulla materia, lo Studio Tecnico A’RS affronta il tema delle stime immobiliari con elevato grado di competenza e rigore, in conformità agli Standard Internazionali di Valutazione.' },
+  { href: '/servizi/#compravendite', icon: '/images/icone/compravendite.svg', title: 'Assistenza alle compravendite', text: 'La vendita o l’acquisto di un immobile rappresentano momenti sempre importanti e complessi.' },
+  { href: '/servizi/#rilievi-topografici', icon: '/images/icone/rilievi.svg', title: 'Rilievi topografici e riconfinamenti', text: 'Lo Studio Tecnico A’RS si occupa del rilievo di terreni edificati o privi di fabbricati, in zona agricola o in aree urbanizzate di ogni genere, con moderne strumentazioni di campagna e post-modellazione software.' },
+];
+---
+<BaseLayout title={title} description={description} transparentHeader={true}>
+  <!-- HERO con slideshow -->
+  <section class="relative min-h-svh flex items-end overflow-hidden bg-ink isolate">
+    <div class="hero-slider absolute inset-0 -z-10" data-interval="5000">
+      {heroSlides.map((s, i) => (
+        <figure class:list={["hero-slide absolute inset-0", i === 0 && "is-active"]} data-index={i}>
+          <img src={s.src} width={s.w} height={s.h} alt={s.alt} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} decoding={i === 0 ? 'sync' : 'async'} class="w-full h-full object-cover" />
+        </figure>
+      ))}
+    </div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/40 to-ink/20" aria-hidden="true"></div>
+    <div class="relative z-10 container-site pb-16 md:pb-24 pt-header">
+      <p class="eyebrow-light mb-5">Studio tecnico · Geometri · Mestre-Venezia</p>
+      <h1 class="font-heading font-normal text-white max-w-[18ch] text-[clamp(2.5rem,5.2vw+1rem,5.5rem)] leading-[1.03] tracking-[-.02em]">
+        Studio Tecnico <em class="italic text-sand">A’RS</em>
+      </h1>
+      <p class="mt-7 max-w-2xl text-white/85 text-lg md:text-xl">
+        Geom. Tosato Christian - Geom. Bonifati Riccardo
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="/servizi/" class="btn-primary">Scopri i servizi</a>
+        <a href="/contatti/#richiedi" class="btn-outline-light">Richiedi un preventivo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section class="container-site py-16 md:py-24">
+    <div class="grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-4 lg:self-center reveal-in">
+        <p class="eyebrow mb-3">Servizi</p>
+        <h2 class="font-heading text-h2 text-ink">Dalla idea sino all’opera finita</h2>
+        <p class="mt-m text-body">
+          La pluridecennale esperienza maturata nel settore edilizio, consente allo Studio Tecnico A’RS di consigliare ed accompagnare il cliente nella realizzazione dei propri progetti immobiliari, in tutti i momenti del processo di costruzione.
+        </p>
+        <a href="/servizi/" class="btn-outline mt-8">Scopri tutti i servizi</a>
+      </div>
+      <ul class="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-ink/10">
+        {homeServices.map((s, i) => (
+          <li class="bg-white p-7 reveal-in" style={`transition-delay:${i * 60}ms`}>
+            <img src={s.icon} width="2048" height="1813" alt="" class="w-14 h-auto mb-4" loading="lazy" decoding="async" />
+            <h3 class="font-heading text-h4 text-ink">
+              <a href={s.href} class="link-underline hover:text-accent transition-colors">{s.title}</a>
+            </h3>
+            <p class="mt-3 text-s text-body">{s.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROGETTI in evidenza -->
+  <section class="container-site pb-16 md:pb-24">
+    <div class="flex flex-wrap items-end justify-between gap-6 reveal-in">
+      <div>
+        <p class="eyebrow mb-3">Progetti</p>
+        <h2 class="font-heading text-h2 text-ink">Render di progetto e opere realizzate</h2>
+      </div>
+      <a href="/portfolio/" class="link-underline text-xs uppercase tracking-[.16em] font-semibold text-accent">Vai ai progetti</a>
+    </div>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-5 gap-y-7 md:gap-y-8">
+      {projects.slice(0, 6).map((p) => (<ProjectCard project={p} />))}
+    </div>
+  </section>
+
+  <Reviews />
+
+  <!-- DOVE SIAMO -->
+  <section class="py-16 md:py-24">
+    <div class="container-site grid lg:grid-cols-12 gap-10">
+      <div class="lg:col-span-5 reveal-in">
+        <p class="eyebrow mb-3">Dove siamo</p>
+        <h2 class="font-heading text-h2 text-ink">Studio a Mestre-Venezia</h2>
+        <p class="mt-m text-body">
+          Lo Studio Tecnico A’RS ha sede nel cuore della città di Mestre-Venezia, nel cui territorio svolge prevalentemente la propria attività.
+        </p>
+      </div>
+      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-8 reveal-in">
+        <div>
+          <p class="text-xs uppercase tracking-[.16em] text-grey">Sede</p>
+          <address class="not-italic mt-2 text-ink">Galleria Teatro Vecchio 15<br />30172 Mestre Venezia (VE)</address>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-[.16em] text-grey">Contatti</p>
+          <p class="mt-2"><a href={`mailto:${site.email}`} class="link-underline text-ink">{site.email}</a></p>
+          <p class="mt-1 text-s"><span class="text-grey">Tel.</span> <a href={`tel:${site.phones[0].href}`} class="link-underline text-ink">{site.phones[0].label}</a></p>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-[.16em] text-grey">Orari</p>
+          <p class="mt-2 text-ink">{site.hours}</p>
+          <p class="mt-1 text-s text-grey">{site.hoursNote}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-slide { opacity: 0; transition: opacity 1.2s cubic-bezier(.4,0,.2,1); }
+  .hero-slide.is-active { opacity: 1; }
+  .hero-slide img { transform: scale(1.06); transition: transform 7s linear; }
+  .hero-slide.is-active img { transform: scale(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide, .hero-slide img { transition: none; }
+    .hero-slide img { transform: none; }
+  }
+</style>
+
+<script>
+  const c=document.querySelector(".hero-slider"),e=[...document.querySelectorAll(".hero-slide")];if(c&&e.length>1&&!matchMedia("(prefers-reduced-motion: reduce)").matches){const o=Number((c as HTMLElement).dataset.interval)||5e3;let t=0,s:number|undefined;const l=(a:number)=>{e[t]?.classList.remove("is-active");t=a%e.length;e[t].classList.add("is-active");const n=e[(t+1)%e.length]?.querySelector("img");n?.loading==="lazy"&&(n.loading="eager")};const r=()=>{i();s=window.setInterval(()=>l(t+1),o)},i=()=>s&&clearInterval(s);r();document.addEventListener("visibilitychange",()=>document.hidden?i():r())}
+</script>

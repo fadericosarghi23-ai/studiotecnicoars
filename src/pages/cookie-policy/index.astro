@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+const title = 'Cookie Policy | Studio Tecnico A’RS';
+const description = 'Informativa sui cookie utilizzati dal sito dello Studio Tecnico A’RS di Mestre-Venezia e su come gestire le preferenze.';
+---
+<BaseLayout title={title} description={description}>
+  <section class="pt-[calc(var(--header-h)+3rem)] pb-16 md:pb-24">
+    <div class="container-site max-w-3xl">
+      <nav aria-label="Percorso di navigazione" class="text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-grey">
+          <li class="flex items-center gap-2">
+            <a href="/" class="link-underline hover:text-accent transition-colors"> Home </a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" class="text-ink"> Cookie Policy </span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="mt-5 font-heading text-h1 text-ink">Cookie Policy</h1>
+      <p class="mt-3 text-s text-grey">Ultimo aggiornamento: 30 settembre 2026</p>
+      <div class="legal mt-10">
+        <p>
+          Questa Cookie Policy spiega cosa sono i cookie, come li utilizziamo su www.studiotecnicoars.it, e come puoi
+          gestire le tue preferenze in merito. Utilizzando il nostro sito, accetti l’utilizzo dei cookie
+          in conformità con questa informativa.
+        </p>
+        <h2>1. Cosa sono i cookie?</h2>
+        <p>
+          I cookie sono piccoli file di testo inviati al tuo dispositivo (computer, tablet o smartphone)
+          quando visiti un sito web. Servono a migliorare l’esperienza di navigazione, memorizzare le tue
+          preferenze e raccogliere informazioni utili per analisi statistiche o di marketing.
+        </p>
+        <h2>2. Tipologie di cookie utilizzati</h2>
+        <p>Su www.studiotecnicoars.it utilizziamo le seguenti categorie di cookie:</p>
+        <h3>a) Cookie tecnici e funzionali</h3>
+        <p>
+          Questi cookie sono essenziali per il funzionamento del sito e non richiedono il tuo consenso. Ci
+          permettono, ad esempio, di:
+        </p>
+        <ul>
+          <li>Navigare tra le pagine del sito.</li>
+          <li>Memorizzare le tue preferenze (come lingua o formato).</li>
+        </ul>
+        <h3>b) Cookie analitici</h3>
+        <p>
+          Questi cookie raccolgono informazioni sull’utilizzo del sito da parte degli utenti (ad esempio,
+          quali pagine vengono visitate più frequentemente). I dati sono raccolti in forma anonima e
+          servono per migliorare il sito. Strumenti utilizzati: Google Analytics o strumenti simili.
+        </p>
+        <h3>c) Cookie di profilazione</h3>
+        <p>
+          Questi cookie vengono utilizzati per creare profili relativi all’utente e per inviare messaggi
+          pubblicitari mirati. Attualmente, {site.name} non utilizza cookie di profilazione.
+        </p>
+        <h3>d) Cookie di terze parti</h3>
+        <p>
+          Alcuni servizi integrati sul nostro sito (es. video, mappe o condivisione sui social media)
+          possono installare cookie gestiti da terze parti. Esempi:
+        </p>
+        <ul>
+          <li>Google Maps → per visualizzare mappe interattive.</li>
+          <li>YouTube → per incorporare video.</li>
+          <li>Social media: pulsanti di condivisione (Facebook, Instagram, ecc.).</li>
+        </ul>
+        <h2>3. Come gestire i cookie</h2>
+        <h3>a) Gestione tramite il nostro banner</h3>
+        <p>
+          Al primo accesso al nostro sito, ti verrà mostrato un banner informativo con la possibilità di
+          accettare tutti i cookie o configurare le tue preferenze.
+        </p>
+        <h3>b) Impostazioni del browser</h3>
+        <p>
+          Puoi modificare le impostazioni del tuo browser per bloccare o eliminare i cookie. Tuttavia,
+          alcune funzionalità del sito potrebbero non funzionare correttamente. Ecco i link alle
+          istruzioni per i principali browser:
+        </p>
+        <ul>
+          <li>
+            <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener nofollow">Google Chrome</a>
+          </li>
+          <li>
+            <a href="https://support.mozilla.org/it/kb/Gestione%20dei%20cookie" target="_blank" rel="noopener nofollow">Mozilla Firefox</a>
+          </li>
+          <li>
+            <a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener nofollow">Apple Safari</a>
+          </li>
+          <li>
+            <a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener nofollow">Microsoft Edge</a>
+          </li>
+        </ul>
+        <h3>c) Disattivazione di cookie di terze parti</h3>
+        <p>
+          Puoi gestire le preferenze relative ai cookie di terze parti direttamente dai rispettivi siti
+          web. Ad esempio:
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener nofollow">Google Analytics Opt-Out</a>.
+        </p>
+        <h2>4. Modifiche alla Cookie Policy</h2>
+        <p>
+          Ci riserviamo il diritto di aggiornare questa Cookie Policy in qualsiasi momento. Ti invitiamo a
+          controllarla periodicamente per essere informato su eventuali cambiamenti.
+        </p>
+        <h2>5. Contatti</h2>
+        <p>
+          Per qualsiasi domanda o richiesta relativa alla presente Cookie Policy, puoi contattarci via
+          email: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

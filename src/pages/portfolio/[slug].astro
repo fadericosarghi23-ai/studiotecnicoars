@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryFigure from '../../components/GalleryFigure.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects, getProject } from '../../data/projects';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project: p } = Astro.props;
+const metaLocation = p.meta.split(' · ')[0];
+const title = `${p.title} — ${metaLocation} | ${site.name}`;
+const related = p.related.map(getProject).filter(Boolean);
+const delay = (i: number) => Math.min(i * 60, 360);
+---
+<BaseLayout title={title} description={p.description}>
+  <!-- HERO -->
+  <section class="relative min-h-svh flex items-end overflow-hidden bg-ink">
+    <img src={p.hero.src} width={p.hero.w} height={p.hero.h} alt={p.hero.alt} loading="eager" fetchpriority="high" decoding="sync" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-ink/15" aria-hidden="true"></div>
+    <div class="relative z-10 container-site pb-14 md:pb-20 pt-header">
+      <nav aria-label="Percorso di navigazione" class="text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-white/70">
+          <li class="flex items-center gap-2"><a href="/" class="link-underline hover:text-accent transition-colors">Home</a></li>
+          <li class="flex items-center gap-2"><span aria-hidden="true">/</span><a href="/portfolio/" class="link-underline hover:text-accent transition-colors">Progetti</a></li>
+          <li class="flex items-center gap-2"><span aria-hidden="true">/</span><span aria-current="page" class="text-white">{p.title}</span></li>
+        </ol>
+      </nav>
+      <h1 class="mt-5 font-heading text-h1 text-white">{p.title}</h1>
+      <p class="mt-4 max-w-2xl text-white/85 text-lg">{p.subtitle}</p>
+    </div>
+  </section>
+
+  <!-- SCHEDA + TESTO -->
+  <section class="container-site py-14 md:py-20">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-4 lg:sticky lg:top-28 self-start reveal-in">
+        <h2 class="sr-only">Scheda del progetto</h2>
+        <dl class="border-t border-ink/10">
+          <div class="flex justify-between gap-6 py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">Luogo</dt><dd class="text-s text-ink text-right">{p.location}</dd></div>
+          <div class="flex justify-between gap-6 py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">Anno</dt><dd class="text-s text-ink text-right">{p.year}</dd></div>
+          <div class="flex justify-between gap-6 py-4 border-b border-ink/10"><dt class="text-xs uppercase tracking-[.14em] text-grey">Categorie</dt><dd class="text-s text-ink text-right">{p.categories}</dd></div>
+        </dl>
+        <a href="/contatti/#richiedi" class="btn-primary mt-8 w-full">Parliamo del tuo progetto</a>
+      </div>
+      <div class="lg:col-span-8 prose-dom reveal-in">
+        {p.intro.map((para) => (<p>{para}</p>))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERIA -->
+  <section id="galleria" class="container-site py-12 md:py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {p.gallery.map((img, i) => (<GalleryFigure img={img} slug={p.slug} delay={delay(i)} variant="main" />))}
+    </div>
+  </section>
+
+  <!-- PRIMA DELLA RISTRUTTURAZIONE (opzionale) -->
+  {p.before && (
+    <section class="bg-grey-light">
+      <div class="container-site pt-14">
+        <h2 class="font-heading text-h3 text-ink reveal-in">{p.before.heading}</h2>
+      </div>
+      <section class="container-site py-12 md:py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {p.before.images.map((img, i) => (<GalleryFigure img={img} slug={p.slug} delay={delay(i)} variant="before" />))}
+        </div>
+      </section>
+    </section>
+  )}
+
+  <!-- CTA -->
+  {p.cta && (
+    <section class="py-16 md:py-24 bg-sand-light">
+      <div class="container-site">
+        <div class="max-w-3xl reveal-in">
+          <h2 class="font-heading text-h2 text-ink">{p.cta.heading}</h2>
+          {p.cta.paras.map((para, i) => (<p class={i === 0 ? 'mt-m text-body' : 'mt-4 text-body'}>{para}</p>))}
+          <a href="/contatti/#richiedi" class="btn-primary mt-8">{p.cta.button}</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- PROGETTI CORRELATI -->
+  <section class="container-site py-16 md:py-24">
+    <div class="flex flex-wrap items-end justify-between gap-6 reveal-in">
+      <h2 class="font-heading text-h2 text-ink">Progetti correlati</h2>
+      <a href="/portfolio/" class="link-underline text-xs uppercase tracking-[.16em] font-semibold text-accent">Tutti i progetti</a>
+    </div>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-5 gap-y-7 md:gap-y-8">
+      {related.map((rp) => (<ProjectCard project={rp!} />))}
+    </div>
+  </section>
+</BaseLayout>

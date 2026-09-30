@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { serviceLinks } from '../../data/site';
+const title = 'Lo studio | Studio Tecnico A’RS, geometri a Mestre-Venezia';
+const description = 'Fondato nel 2003 dai geometri Riccardo Bonifati e Christian Tosato, lo Studio Tecnico A’RS ha sede nel cuore di Mestre-Venezia. Conosci lo studio e il team.';
+
+// Team: bio verbatim dal sito del cliente, suddivise per frasi.
+const members = [
+  {
+    name: 'Geom. Christian Tosato', role: 'Geometra · Fondatore',
+    img: '/images/team/christian-tosato.webp', w: 640, h: 640,
+    bio: [
+      'Consegue il diploma di Geometra nell’anno 1994. Dopo gli anni di formazione presso lo studio del Geom. Roberto Vesco, dal 2001 intraprende l’attività libero professionale di Geometra assumendo da subito il ruolo di Consulente d’Ufficio del Tribunale di Venezia, della Corte d’Appello di Venezia e di altri Uffici Giudiziari del territorio.',
+      'Dal 2015 è membro fondatore del comitato CTU Italia e socio di Geo.Val. Geometri Valutatori Esperti. Dal 2019 è valutatore immobiliare certificato ai sensi della norma UNI 11588:2014.',
+      'Nel 2020 consegue la laurea triennale in Ingegneria Civile con tesi sulla applicazione del modello di stima Market Comparison Approach. Attuale componente della Commissione Estimo e Contenzioso del Collegio dei Geometri e Geometri Laureati di Venezia.',
+    ],
+  },
+  {
+    name: 'Geom. Riccardo Bonifati', role: 'Geometra · Fondatore',
+    img: '/images/team/riccardo-bonifati.webp', w: 640, h: 640,
+    bio: [
+      'Consegue il diploma di Geometra nell’anno 1991. Dopo il periodo di apprendistato presso lo studio del Geom. Gustavo Zuppati, dal 1996 intraprende l’attività libero professionale di Geometra impegnandosi da subito nell’attività di consulente per la progettazione e la direzione dei lavori di interventi edilizi di diversa tipologia.',
+      'Sin dal 1998 si occupa di sicurezza nei cantieri edili. Diplomato esperto Casa Clima nel 2008. Dal 2015 è consulente tecnico dell’A.C. Mestre Calcio. Dal 2014 consulente della Società partecipata Ecoricicli Veritas.',
+      'Nel 2020 consegue la laurea triennale in Ingegneria Civile con tesi sulla redazione di un piano urbanistico di recupero di un’area ex industriale.',
+    ],
+  },
+  {
+    name: 'Geom. Alice Gaetani', role: 'Geometra',
+    img: '/images/team/alice-gaetani.webp', w: 632, h: 704,
+    bio: [
+      'Diplomata nell’anno 2010, dallo stesso anno inizia il tirocinio presso lo Studio Tecnico A’RS proseguendo poi l’attività professionale nel medesimo studio sino ad oggi.',
+      'Dal 2013 è abilitata all’esercizio della professione di Geometra. Nel 2020 consegue la laurea triennale in Ingegneria Civile con tesi sullo studio dello smaltimento di acque di prima e seconda pioggia in impianto di riciclo di rifiuti urbani.',
+    ],
+  },
+  {
+    name: 'Diego Agnoletti', role: 'Tirocinante',
+    img: '/images/team/diego-agnoletti.webp', w: 625, h: 780,
+    bio: [
+      'Diplomato nell’anno 2019, dallo stesso anno svolge attività di tirocinio presso lo Studio Tecnico A’RS.',
+    ],
+  },
+];
+---
+<BaseLayout title={title} description={description} transparentHeader={true}>
+  <section class="relative min-h-svh flex items-end overflow-hidden bg-ink">
+    <img src="/images/studio/lo-studio.webp" width="1170" height="780" alt="Tavolo di lavoro dello studio con elaborati di progetto" loading="eager" fetchpriority="high" decoding="sync" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-ink/15" aria-hidden="true"></div>
+    <div class="relative z-10 container-site pb-14 md:pb-20 pt-header">
+      <nav aria-label="Percorso di navigazione" class="text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-white/70">
+          <li class="flex items-center gap-2">
+            <a href="/" class="link-underline hover:text-accent transition-colors"> Home </a>
+          </li>
+          <li class="flex items-center gap-2"> <span aria-hidden="true">/</span> <span aria-current="page" class="text-white"> Lo studio </span> </li>
+        </ol>
+      </nav>
+      <h1 class="mt-5 font-heading text-h1 text-white max-w-4xl">Lo studio</h1>
+      <p class="mt-5 max-w-2xl text-white/85 text-lg">
+        Lo Studio Tecnico A’RS ha sede nel cuore della città di Mestre-Venezia, nel cui territorio svolge prevalentemente la propria attività.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-site py-16 md:py-24">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-4 lg:self-center reveal-in">
+        <p class="eyebrow mb-3">Chi siamo</p>
+        <h2 class="font-heading text-h2 text-ink">Lo studio</h2>
+        <dl class="mt-8 space-y-5 text-sm">
+          <div>
+            <dt class="text-grey uppercase tracking-[.14em] text-xs">Founders</dt>
+            <dd class="mt-1 text-ink">
+              <span class="block">Geom. Christian Tosato</span>
+              <span class="block">Geom. Riccardo Bonifati</span>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-grey uppercase tracking-[.14em] text-xs">Collaboratori</dt>
+            <dd class="mt-1 text-ink">
+              <span class="block">Geom. Alice Gaetani</span>
+              <span class="block">Diego Agnoletti</span>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-grey uppercase tracking-[.14em] text-xs">Specializzazioni</dt>
+            <dd class="mt-1 text-ink">
+              {serviceLinks.map((s) => s.label).join(' · ')}
+            </dd>
+          </div>
+        </dl>
+      </div>
+      <div class="lg:col-span-8 prose-dom reveal-in">
+        <p>Lo Studio Tecnico A’RS di Mestre-Venezia svolge attività di progettazione di interventi edilizi residenziali, commerciali, industriali, rurali, di nuova costruzione o in ristrutturazione, dalle fasi di analisi di fattibilità preliminare sino al completamento delle opere.</p>
+        <p>Fondato dal geometra dott. Riccardo Bonifati e dal geometra dott. Christian Tosato nasce nel 2003 dalla fusione degli studi del geom. Gustavo Zuppati e del geom. Roberto Vesco, con l’intento di portare avanti il modello di lavoro acquisito nel corso degli anni di maturazione professionale e di condurre nel futuro i principi cardine che sono alla base dell’attività tecnica del geometra: preparazione, passione, creatività e responsabilità nell’accompagnare il cliente al raggiungimento dei propri obiettivi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-sand-light py-16 md:py-24">
+    <div class="container-site grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-4 lg:self-center reveal-in">
+        <p class="eyebrow mb-3">Mission</p>
+        <h2 class="font-heading text-h2 text-ink">La nostra filosofia</h2>
+      </div>
+      <div class="lg:col-span-8 prose-dom reveal-in">
+        <p>La costante formazione specialistica ed il graduale inserimento nell’organico dello studio di giovani professionisti, hanno permesso allo Studio Tecnico A’RS di mantenersi costantemente informato sui continui aggiornamenti normativi e tecnici nei più svariati ambiti della professione, conservando un elevato profilo di preparazione ed efficienza, al passo con le moderne dinamiche nella vita e nelle attività di business.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="container-site py-16 md:py-24 scroll-mt-28">
+    <p class="eyebrow mb-3 reveal-in">Team</p>
+    <h2 class="font-heading text-h2 text-ink reveal-in">Il team</h2>
+    <div class="mt-12 space-y-16 md:space-y-24">
+      {members.map((m, i) => (
+        <article class="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center reveal-in">
+          <div class:list={["lg:col-span-5 group overflow-hidden bg-grey-light", i % 2 === 1 && "lg:order-2"]}>
+            <img src={m.img} width={m.w} height={m.h} alt={`Ritratto di ${m.name}`} loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]" />
+          </div>
+          <div class="lg:col-span-7 prose-dom">
+            <h3 class="font-heading text-h3 text-ink">{m.name}</h3>
+            <p class="text-xs uppercase tracking-[.16em] text-accent mt-1 mb-4">{m.role}</p>
+            {m.bio.map((p) => (<p>{p}</p>))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

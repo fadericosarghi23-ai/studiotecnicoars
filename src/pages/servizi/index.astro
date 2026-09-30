@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = 'Servizi | Studio Tecnico A’RS, geometri a Mestre-Venezia';
+const description = 'Progettazione e direzione lavori, detrazioni fiscali in edilizia, stime immobiliari, compravendite, consulenze tecniche, rilievi, tabelle millesimali e pratiche catastali.';
+
+// 9 servizi dal mapping (CONTENT_FILL.md): verbatim, tranne 2/5/6 [RISCRITTO].
+// `intro` = primo paragrafo (visibile), `more` = paragrafi nel "Leggi di più".
+// `cta` = chiusura "Contattaci per ricevere un preventivo" (servizi 8 e 9, form in altra pagina).
+type Service = { id: string; title: string; img: string; w: number; h: number; alt: string; intro: string; more?: string[]; cta?: boolean };
+const services: Service[] = [
+  {
+    id: 'progettazione-direzione-lavori', title: 'Progettazione e direzione lavori',
+    img: '/images/servizi/progettazione-direzione-lavori.webp', w: 800, h: 480, alt: 'Cantiere e tavole di progetto',
+    intro: 'Da sempre i Geometri Riccardo Bonifati e Christian Tosato e lo Studio Tecnico A’RS svolgono attività di progettazione di interventi edilizi residenziali, commerciali, industriali, rurali, di nuova costruzione o in ristrutturazione, dalle fasi di analisi di fattibilità preliminare sino al completamento delle opere.',
+    more: ['La pluridecennale esperienza maturata nel settore edilizio, consente allo Studio Tecnico A’RS di consigliare ed accompagnare il cliente nella realizzazione dei propri progetti immobiliari, in tutti i momenti del processo di costruzione. Attraverso un percorso graduale e personalizzato che inizia dalle proprie esigenze e desideri, lo Studio Tecnico A’RS conduce la clientela a sviluppare il progetto sul piano tecnico, dalla idea sino all’opera finita, seguendo tutte le fasi burocratiche, amministrative e costruttive con elevata professionalità e competenza, frutto del continuo aggiornamento professionale e tecnico nel settore.'],
+  },
+  {
+    id: 'detrazioni-fiscali', title: 'Pratiche di detrazione fiscale in edilizia',
+    img: '/images/servizi/detrazioni-fiscali.webp', w: 700, h: 420, alt: 'Scala di classificazione energetica su una planimetria',
+    intro: 'Lo Studio A’RS affianca privati e condomini nell’accesso alle agevolazioni fiscali per l’edilizia previste dalla normativa vigente, per interventi di efficienza energetica, riduzione del rischio sismico e installazione di impianti da fonti rinnovabili.',
+    more: ['In collaborazione con professionisti specializzati del territorio, fornisce valutazioni sul rendimento energetico dell’edificio e proposte progettuali per migliorarne efficienza, qualità abitativa e sicurezza. Offre analisi e consulenza preventiva, verifiche formali, regolarizzazione degli immobili, gestione della progettazione, della cantieristica e della sicurezza, oltre all’accompagnamento del cliente nell’intero percorso burocratico e fiscale dell’operazione.'],
+  },
+  {
+    id: 'stime-immobiliari', title: 'Stime immobiliari',
+    img: '/images/servizi/stime-immobiliari.webp', w: 800, h: 509, alt: 'Planimetrie e campionario colori',
+    intro: 'Grazie alla costante formazione professionale ed agli studi decennali sulla materia, lo Studio Tecnico A’RS affronta il tema delle stime immobiliari con elevato grado di competenza e rigore, in conformità agli Standard Internazionali di Valutazione.',
+    more: [
+      'Storicamente, nel nostro Paese, il processo di stima dei beni del settore immobiliare è sempre stato legato a valutazioni di carattere prevalentemente soggettivo. Gli operatori del settore hanno spesso sintetizzato i procedimenti di stima con valutazioni empiriche basate su dati non reali, tentando in qualche modo di “azzeccare” il più probabile valore di un bene, affidandosi alla “scorciatoia” della stima sintetica ed offrendo, in questo modo, una analisi piuttosto opaca, approssimativa e superficiale del mercato immobiliare e della attività del valutatore professionista.',
+      'Da ormai almeno vent’anni, anche il mercato italiano ha iniziato a richiedere al settore immobiliare e finanziario di dotarsi di metodologie e processi di stima idonei e riconosciuti, in un quadro di condivisione ed omogeneità di regole e standard.',
+      'Da tempo lo Studio Tecnico A’RS ha compreso la reale portata della svolta avvenuta nel settore delle stime immobiliari e si è adeguato alle procedure estimative in conformità agli standard internazionali di valutazione, attraverso un percorso che ha portato alla certificazione UNI 11588:2014.',
+    ],
+  },
+  {
+    id: 'compravendite', title: 'Assistenza alle compravendite',
+    img: '/images/servizi/compravendite.webp', w: 800, h: 533, alt: 'Consegna delle chiavi di un immobile',
+    intro: 'La vendita o l’acquisto di un immobile rappresentano momenti sempre importanti e complessi. Approcciarsi ad una fase così delicata con imprudenza o affidandosi ad operatori non preparati, può portare spesso a brutte sorprese con incremento dei costi e dei tempi programmati.',
+    more: [
+      'Sia per immobili residenziali che per ogni altro ambito del patrimonio immobiliare commerciale, terziario o produttivo, lo Studio Tecnico A’RS è in grado di accompagnare ed assistere il cliente nelle fasi di approccio alle compravendite, recuperando e certificando tutta la documentazione necessaria al notaio per la stipula finale.',
+      'Con la collaudata procedura Check-up Immobiliare, lo Studio Tecnico A’RS è in grado di fornire al Cliente una valutazione complessiva dello stato documentale del proprio immobile e risolvere prontamente e per tempo eventuali carenze o disguidi, prima che diventino problemi insormontabili.',
+      'Lo Studio Tecnico A’RS offre inoltre assistenza all’acquisto di immobili proposti nelle aste giudiziarie dei Tribunali Italiani, dalla ricerca dei beni più adeguati alla richiesta dei clienti, alla lettura della perizia di stima depositata in Tribunale, sino alla partecipazione all’asta di acquisto.',
+    ],
+  },
+  {
+    id: 'consulenze-tecniche', title: 'Consulenze tecniche per privati ed imprese',
+    img: '/images/servizi/consulenze-tecniche.webp', w: 800, h: 536, alt: 'Consulenza tecnica su un immobile',
+    intro: 'La pluridecennale assistenza ai principali Uffici Giudiziari della Provincia di Venezia e la rete di collaborazione con gli studi legali specializzati del territorio consentono allo Studio Tecnico A’RS di accompagnare il Cliente nei vari gradi dei processi civili e penali.',
+    more: ['Lo Studio assiste il privato o l’azienda nella tutela dei propri diritti in tutte le fasi del procedimento giudiziario: nella fase antecedente il contenzioso, per una valutazione preliminare della posizione tecnico-giuridica e la preparazione della documentazione necessaria; in fase di mediazione e conciliazione; durante il procedimento, in stretta collaborazione con lo studio legale designato.'],
+  },
+  {
+    id: 'rilievi-topografici', title: 'Rilievi topografici e riconfinamenti',
+    img: '/images/servizi/rilievi-topografici.webp', w: 800, h: 533, alt: 'Rilievo topografico con stazione totale',
+    intro: 'Lo Studio Tecnico A’RS si occupa del rilievo di terreni edificati o privi di fabbricati, in zona agricola o in aree urbanizzate di ogni genere, con moderne strumentazioni di campagna e post-modellazione software.',
+    more: ['Un corretto rilievo planoaltimetrico non è utile solo alla esatta determinazione delle dimensioni di una proprietà, ma costituisce sempre più spesso la base di partenza indispensabile per programmare correttamente lo sviluppo del territorio urbano o rurale. L’esperienza maturata negli anni e la continua formazione consentono allo Studio di fornire consulenze su confinazioni, riconfinazioni, apposizione di termini e verifiche di confini esistenti, sia sulla base della ricostruzione delle mappe storiche di impianto sia assumendo a riferimento atti di divisione più recenti. La determinazione di un confine non è solo un’operazione di rilievo: richiede la conoscenza specialistica di tecniche, norme e prassi alla base della corretta lettura dei documenti e degli atti che nel tempo hanno modificato le proprietà di un territorio.'],
+  },
+  {
+    id: 'tabelle-millesimali', title: 'Tabelle millesimali',
+    img: '/images/servizi/tabelle-millesimali.webp', w: 800, h: 373, alt: 'Planimetrie di un edificio',
+    intro: 'La redazione delle Tabelle Millesimali pone una serie di tormentate questioni ed altrettanti dubbi che molto spesso sono motivo di confusione e difficoltà in sede assembleare.',
+    more: ['Lo Studio tecnico A’RS, offre il servizio di prima redazione, verifica, aggiornamento o revisione di tabelle millesimali degli edifici in condominio e supercondominio, sulla base della indispensabile conoscenza dei fondamenti legislativi e dei criteri specialistici del corretto procedimento tecnico-estimativo. Attività svolta per amministratori condominiali ma anche per singoli condomini che volessero sciogliere le proprie perplessità su tale delicato argomento.'],
+  },
+  {
+    id: 'pratiche-catastali', title: 'Pratiche catastali, successioni e volture',
+    img: '/images/servizi/pratiche-catastali.webp', w: 800, h: 301, alt: 'Firma di documenti catastali',
+    intro: 'Visure catastali attuali o storiche, reperimento di planimetrie, aggiornamenti catastali, frazionamenti, volture, successioni, riunioni di usufrutto, verifiche di proprietà, copie di atti di acquisto, cancellazioni di formalità.',
+    cta: true,
+  },
+  {
+    id: 'pubblico-spettacolo', title: 'Pratiche commerciali e di pubblico spettacolo',
+    img: '/images/servizi/pubblico-spettacolo.webp', w: 800, h: 533, alt: 'Regia luci durante un evento',
+    intro: 'Lo Studio Tecnico A’RS si occupa anche delle pratiche di pubblico spettacolo per l’avvio di manifestazioni, eventi e apertura di strutture assoggettate ad agibilità di pubblico spettacolo, nonché pratiche per attività commerciali quali bar, ristoranti, musei, laboratori, etc.',
+    cta: true,
+  },
+];
+const [featured, ...others] = services;
+---
+<BaseLayout title={title} description={description}>
+  <section class="pt-[calc(var(--header-h)+2.5rem)] pb-8">
+    <div class="container-site">
+      <nav aria-label="Percorso di navigazione" class="text-xs">
+        <ol class="flex flex-wrap items-center gap-2 text-grey">
+          <li class="flex items-center gap-2">
+            <a href="/" class="link-underline hover:text-accent transition-colors"> Home </a>
+          </li>
+          <li class="flex items-center gap-2">
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" class="text-ink"> Servizi </span>
+          </li>
+        </ol>
+      </nav>
+      <h1 class="mt-4 font-heading text-h1 text-ink max-w-4xl">Servizi</h1>
+    </div>
+  </section>
+  <section class="container-site pb-14 md:pb-20">
+    <div class="grid lg:grid-cols-3 gap-x-5 gap-y-8">
+      <!-- Card in evidenza -->
+      <article id={featured.id} class="service-card group lg:col-span-3 grid md:grid-cols-2 bg-grey-light scroll-mt-28 overflow-hidden reveal-in">
+        <div class="relative overflow-hidden aspect-[16/10] md:aspect-auto md:min-h-[22rem]">
+          <img src={featured.img} width={featured.w} height={featured.h} alt={featured.alt} loading="eager" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105" />
+        </div>
+        <div class="p-7 md:p-10 flex flex-col justify-center">
+          <h2 class="font-heading text-h2 text-ink">{featured.title}</h2>
+          <p class="mt-3 text-body">{featured.intro}</p>
+          <details class="service-details mt-5">
+            <summary class="cursor-pointer list-none inline-flex items-center gap-2 text-xs uppercase tracking-[.14em] font-semibold text-accent hover:text-accent-hover transition-colors">
+              <span class="label">Leggi di più</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </summary>
+            {featured.more?.map((p) => (<p class="mt-3 text-s text-body">{p}</p>))}
+          </details>
+        </div>
+      </article>
+      <!-- Gli altri otto -->
+      {others.map((s, i) => (
+        <article id={s.id} class="service-card group flex flex-col bg-grey-light scroll-mt-28 overflow-hidden reveal-in" style={`transition-delay:${(i % 3) * 50}ms`}>
+          <div class="relative overflow-hidden aspect-[16/10]">
+            <img src={s.img} width={s.w} height={s.h} alt={s.alt} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105" />
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h2 class="font-heading text-h3 text-ink leading-tight">{s.title}</h2>
+            <p class="mt-2.5 text-s text-body">{s.intro}</p>
+            {s.more && (
+              <details class="service-details mt-auto pt-4">
+                <summary class="cursor-pointer list-none inline-flex items-center gap-2 text-xs uppercase tracking-[.14em] font-semibold text-accent hover:text-accent-hover transition-colors">
+                  <span class="label">Leggi di più</span>
+                  <span class="arrow" aria-hidden="true">
+                    →
+                  </span>
+                </summary>
+                {s.more.map((p) => (<p class="mt-3 text-s text-body">{p}</p>))}
+              </details>
+            )}
+            {s.cta && (
+              <a href="/contatti/#richiedi" class="mt-auto pt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[.14em] font-semibold text-accent hover:text-accent-hover transition-colors">
+                <span>Contattaci per ricevere un preventivo</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
